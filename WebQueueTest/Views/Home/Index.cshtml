@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <label for="PullRequestURL">Pull Request URL</label>
+    <input type="text" id="PullRequestURL" />
+    <label for="Email">Email</label>
+    <input type="text" id="Email"/>
+    @*<button>@Html.TextBox("JobBox")</button>*@
+    <button>@Html.ActionLink("Submit Job", "PostJob", "Job")</button>
+    @*<button id="StartJobButton" onclick="">Start Job</button>*@
+</div>
+
+<script type="text/javascript">
+    $("#JobBox").click(function (obj) {
+        var url = "/Job/PostJob";
+        var pullRequestURL = $("#PullRequestURL").val();
+        var email = $("#Email").val();
+        $.post(url, { pullRequestURL: pullRequestURL, email: email }, function done(data) {
+
+        });
+    });
+</script>

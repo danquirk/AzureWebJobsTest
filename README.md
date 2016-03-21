@@ -1,0 +1,1 @@
+Testing how Azure WebJobs SDK works
