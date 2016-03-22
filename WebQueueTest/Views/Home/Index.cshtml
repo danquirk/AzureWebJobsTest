@@ -3,22 +3,13 @@
 }
 
 <div class="jumbotron">
-    <label for="PullRequestURL">Pull Request URL</label>
-    <input type="text" id="PullRequestURL" />
-    <label for="Email">Email</label>
-    <input type="text" id="Email"/>
-    @*<button>@Html.TextBox("JobBox")</button>*@
-    <button>@Html.ActionLink("Submit Job", "PostJob", "Job")</button>
-    @*<button id="StartJobButton" onclick="">Start Job</button>*@
+    @using (Html.BeginForm("PostJob", "Job", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            Pull Request URL <input type="text" name="pullRequestURL" />
+            Email <input type="text" name="email"/>
+            <input type="submit" value="Submit Job" />
+        </fieldset>
+    }
 </div>
-
-<script type="text/javascript">
-    $("#JobBox").click(function (obj) {
-        var url = "/Job/PostJob";
-        var pullRequestURL = $("#PullRequestURL").val();
-        var email = $("#Email").val();
-        $.post(url, { pullRequestURL: pullRequestURL, email: email }, function done(data) {
-
-        });
-    });
-</script>

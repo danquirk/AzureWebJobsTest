@@ -18,14 +18,14 @@ namespace WebQueueTest.Controllers
             return View();
         }
 
-        public ActionResult PostJob()
+        public ActionResult PostJob(string pullRequestURL, string email)
         {
             var queue = Utils.GetQueue();
 
             // Create a message and add it to the queue.
             var job = new JobDescription() {
-                PullRequestURL = "http://github.com/microsoft/typescript/123124",
-                RequestingEmail = "danquirk@adf.asdf",
+                PullRequestURL = pullRequestURL ?? "http://www.github.com/microsoft/typescript/00000",
+                RequestingEmail = email ?? "email@email.com",
                 RequestTime = DateTime.Now
             };
                 
