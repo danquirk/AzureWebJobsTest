@@ -18,13 +18,11 @@ namespace WebJobTest
             var job = Newtonsoft.Json.JsonConvert.DeserializeObject<JobDescription>(jobDescription);
             Console.WriteLine("Job: {0}, recipient: {1}, message: {2}", job.PullRequestURL, job.RequestingEmail, job.RequestTime);
 
-            var queue = Utils.GetQueue();
-
-            var nextMessage = await queue.PeekMessageAsync();
-            if (nextMessage != null)
+            var queue = Utils.GetQueue(JobQueues.ProcessedIncoming);
+            foreach (var repo in Utils.RepoList)
             {
-                Console.WriteLine("Next message: {0}", nextMessage.AsString);
-            }
+                queue.AddMessage();
+            }            
         }
     }
 }

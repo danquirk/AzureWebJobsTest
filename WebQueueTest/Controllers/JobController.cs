@@ -20,7 +20,7 @@ namespace WebQueueTest.Controllers
 
         public ActionResult PostJob(string pullRequestURL, string email)
         {
-            var queue = Utils.GetQueue();
+            var queue = Utils.GetQueue(JobQueues.RawIncoming);
 
             // Create a message and add it to the queue.
             var job = new JobDescription() {
