@@ -292,9 +292,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataTypes\DataTypes.csproj">
+    <ProjectReference Include="..\DataTypes\Utilities.csproj">
       <Project>{ba41591a-e574-4da1-986b-69d1615ff650}</Project>
-      <Name>DataTypes</Name>
+      <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

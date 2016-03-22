@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebQueueTest", "WebQueueTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebJobTest", "WebJobTest\WebJobTest.csproj", "{1A290F1A-18CF-471F-A805-5DC2F71A8FED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTypes", "DataTypes\DataTypes.csproj", "{BA41591A-E574-4DA1-986B-69D1615FF650}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "DataTypes\Utilities.csproj", "{BA41591A-E574-4DA1-986B-69D1615FF650}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
