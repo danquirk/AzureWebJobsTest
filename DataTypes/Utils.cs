@@ -10,38 +10,32 @@ using Microsoft.Azure;
 
 namespace Utilities
 {
-    public enum JobQueues
+    public static class JobQueues
     {
-        RawIncoming,
-        ProcessedIncoming,
-        Outgoing
+        public const string RawIncoming = "raw-incoming";
+        public const string ProcessedIncoming = "processed-incoming";
+        public const string Outgoing = "outgoing";
+
+        public static void ValidateQueueName(string name)
+        {
+            if(name != RawIncoming && name != ProcessedIncoming && name != Outgoing)
+            {
+                throw new ArgumentException("Invalid queue name: {0}", name);
+            }
+        }
     }
     
     public static class Utils
     {
         public static List<string> RepoList = new List<string>();
-        public static CloudQueue GetQueue(JobQueues queueName)
+        public static CloudQueue GetQueue(string queueName)
         {
+            JobQueues.ValidateQueueName(queueName);
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
             CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
-            CloudQueue queue = queueClient.GetQueueReference(queueName.AsString());
+            CloudQueue queue = queueClient.GetQueueReference(queueName);
             queue.CreateIfNotExists();
             return queue;
-        }
-
-        public static string AsString(this JobQueues job)
-        {
-            switch(job)
-            {
-                case JobQueues.RawIncoming:
-                    return "raw-incoming";
-                case JobQueues.ProcessedIncoming:
-                    return "processed-incoming";
-                case JobQueues.Outgoing:
-                    return "outgoing";
-                default:
-                    throw new Exception("Unknown enum value");
-            }
         }
     }
 }

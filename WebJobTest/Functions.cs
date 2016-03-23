@@ -12,7 +12,7 @@ namespace WebJobTest
 {
     public static class Functions
     {
-        public static void ProcessMessage([QueueTrigger("jobqueue")] string jobDescription)
+        public static void ProcessMessage([QueueTrigger(JobQueues.RawIncoming)] string jobDescription)
         {
             Console.WriteLine("ProcessMessageFired");
             var job = Newtonsoft.Json.JsonConvert.DeserializeObject<JobDescription>(jobDescription);
