@@ -12,7 +12,7 @@ namespace WebJobTest
 {
     public static class Functions
     {
-        public static async void ProcessMessage([QueueTrigger("jobqueue")] string jobDescription)
+        public static void ProcessMessage([QueueTrigger("jobqueue")] string jobDescription)
         {
             Console.WriteLine("ProcessMessageFired");
             var job = Newtonsoft.Json.JsonConvert.DeserializeObject<JobDescription>(jobDescription);
@@ -21,7 +21,7 @@ namespace WebJobTest
             var queue = Utils.GetQueue(JobQueues.ProcessedIncoming);
             foreach (var repo in Utils.RepoList)
             {
-                queue.AddMessage();
+                //queue.AddMessage();
             }            
         }
     }

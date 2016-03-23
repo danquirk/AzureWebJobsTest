@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
+using Microsoft.Azure;
 
 namespace Utilities
 {
@@ -21,7 +22,7 @@ namespace Utilities
         public static List<string> RepoList = new List<string>();
         public static CloudQueue GetQueue(JobQueues queueName)
         {
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
             CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
             CloudQueue queue = queueClient.GetQueueReference(queueName.AsString());
             queue.CreateIfNotExists();
@@ -33,11 +34,11 @@ namespace Utilities
             switch(job)
             {
                 case JobQueues.RawIncoming:
-                    return "RawIncoming";
+                    return "raw-incoming";
                 case JobQueues.ProcessedIncoming:
-                    return "ProcesssedIncoming";
+                    return "processed-incoming";
                 case JobQueues.Outgoing:
-                    return "Outgoing";
+                    return "outgoing";
                 default:
                     throw new Exception("Unknown enum value");
             }
