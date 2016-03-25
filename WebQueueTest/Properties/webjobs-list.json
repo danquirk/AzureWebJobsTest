@@ -3,6 +3,9 @@
   "WebJobs": [
     {
       "filePath": "../WebJobTest/WebJobTest.csproj"
+    },
+    {
+      "filePath": "../WorkerRoleProxy/WorkerRoleProxy.csproj"
     }
   ]
 }

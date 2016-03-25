@@ -21,17 +21,9 @@ namespace WebQueueTest.Controllers
         public ActionResult PostJob(string pullRequestURL, string email)
         {
             var queue = Utils.GetQueue(JobQueues.RawIncoming);
-
-            // Create a message and add it to the queue.
-            var job = new JobDescription() {
-                PullRequestURL = pullRequestURL ?? "http://www.github.com/microsoft/typescript/00000",
-                RequestingEmail = email ?? "email@email.com",
-                RequestTime = DateTime.Now
-            };
-                
+            var job = new JobDescription(pullRequestURL ?? "http://www.github.com/microsoft/typescript/00000", email ?? "email@email.com");                
             CloudQueueMessage queueMessage = new CloudQueueMessage(JsonConvert.SerializeObject(job));
             queue.AddMessage(queueMessage);
-
             return View();
         }
     }

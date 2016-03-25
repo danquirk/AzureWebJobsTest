@@ -27,7 +27,20 @@ namespace Utilities
     
     public static class Utils
     {
-        public static List<string> RepoList = new List<string>();
+        private static List<string> repoList;
+
+        public static List<string> RepoList
+        {
+            get
+            {
+                if(repoList == null)
+                {
+                    repoList = new List<string>() { "AAAA", "BBBB", "CCCC", "DDDD" };
+                }
+                return repoList;
+            }
+        }
+
         public static CloudQueue GetQueue(string queueName)
         {
             JobQueues.ValidateQueueName(queueName);
